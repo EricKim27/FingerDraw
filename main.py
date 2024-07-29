@@ -3,8 +3,15 @@ import time
 import mediapipe as mp
 import cv2
 import datetime
+import warnings
+import sys
+
+warnings.filterwarnings("ignore")
 
 try:
+    print(ascii_art)
+    print("FingerDraw v1.0 (git-mainline)")
+    print("")
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands()
     cap = cv2.VideoCapture(1)
@@ -49,7 +56,6 @@ try:
         elif chr(key) in color_map:
             pen.colors, text = color_map[chr(key)]
         elif key == ord('q'):
-            print("INTERRUPT detected!!")
             break
         elif key == ord('s'):
             imname = f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.png"
@@ -58,12 +64,17 @@ try:
         cv2.putText(img, text, (0,130), cv2.FONT_HERSHEY_PLAIN, 12, (0, 0, 0), 5)
         cv2.imshow('img', img)
 except Exception as e:
+    print('\033[91m' + f"EXCEPTION OCCURED: {e}" + '\033[0m')
+    print("Doing cleanup job...")
     cap.release()
     cv2.destroyAllWindows()
     for i in range(1, 5):
         cv2.waitKey(1)
+    sys.exit(250)
 finally:
     cap.release()
     cv2.destroyAllWindows()
     for i in range(1, 5):
         cv2.waitKey(1)
+    
+    print('\033[92m' + "Done." + '\033[0m')

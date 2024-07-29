@@ -4,7 +4,6 @@ import numpy as np
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
-
 color_map = {
     '1': ((0, 0, 255), "Red"),
     '2': ((0, 165, 255), "Orange"),
@@ -16,7 +15,14 @@ color_map = {
     '8': ((0, 0, 0), "Black"),
     '9': ((255, 255, 255), "White")
 }
-
+ascii_art = """
+    _______                       ____                     
+   / ____(_)___  ____ ____  _____/ __ \_________ __      __
+  / /_  / / __ \/ __ `/ _ \/ ___/ / / / ___/ __ `/ | /| / /
+ / __/ / / / / / /_/ /  __/ /  / /_/ / /  / /_/ /| |/ |/ / 
+/_/   /_/_/ /_/\__, /\___/_/  /_____/_/   \__,_/ |__/|__/  
+              /____/                                       
+"""
 
 # Initialize drawing utils
 mp_drawing = mp.solutions.drawing_utils
