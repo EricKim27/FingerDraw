@@ -5,6 +5,19 @@ import numpy as np
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
+color_map = {
+    '1': ((0, 0, 255), "Red"),
+    '2': ((0, 165, 255), "Orange"),
+    '3': ((0, 255, 255), "Yellow"),
+    '4': ((0, 255, 0), "Green"),
+    '5': ((255, 0, 0), "Blue"),
+    '6': ((130, 0, 75), "Purple"),
+    '7': ((238, 130, 238), "Pink"),
+    '8': ((0, 0, 0), "Black"),
+    '9': ((255, 255, 255), "White")
+}
+
+
 # Initialize drawing utils
 mp_drawing = mp.solutions.drawing_utils
 

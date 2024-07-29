@@ -21,5 +21,6 @@ You can draw by bringing your index finger and thumb close to each other.
 | 7 | changes the color to pink. |
 | 8 | changes the color to black. |
 | 9 | changes the color to white. |
+| s | saves the image. |
 | e | erases everything. |
 | q | quits the program. |
