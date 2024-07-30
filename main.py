@@ -14,6 +14,7 @@ try:
     print("")
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands()
+    print("Starting Camera...")
     cap = cv2.VideoCapture(1)
     cv2.startWindowThread()
     text = "Black"
