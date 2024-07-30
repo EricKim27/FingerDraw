@@ -61,7 +61,7 @@ try:
             imname = f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.png"
             cv2.imwrite(imname, img)
             cv2.putText(img,f"Image saved as{imname}",(0,200),cv2.FONT_HERSHEY_PLAIN, 8, pen.colors, 5)
-        cv2.putText(img, text, (0,130), cv2.FONT_HERSHEY_PLAIN, 12, (0, 0, 0), 5)
+        cv2.putText(img, text, (0,130), cv2.FONT_HERSHEY_PLAIN, 12, pen.colors, 5)
         cv2.imshow('img', img)
 except Exception as e:
     print('\033[91m' + f"ERROR OCCURED: {e}" + '\033[0m')
