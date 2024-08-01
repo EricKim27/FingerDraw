@@ -70,6 +70,7 @@ class Pen:
                 cv2.line(img, start_point, end_point, color, thickness)
     def clear_canvas(self):
         self.coordinate_list = []
+        self.coordinate_list.append([123456, 123456, self.colors])
     def undo(self):
         if not self.coordinate_list:
             print("Coordinate list is empty. Nothing to undo.")
