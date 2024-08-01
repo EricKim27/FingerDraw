@@ -24,3 +24,4 @@ You can draw by bringing your index finger and thumb close to each other.
 | s | saves the image. |
 | e | erases everything. |
 | q | quits the program. |
+| z | undo |

@@ -4,6 +4,8 @@ import numpy as np
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
+version = 1.1
+patches = "Now can change the color of the line without having to change the entire color!\nAlso now can Undo by pressing Z!"
 color_map = {
     '1': ((0, 0, 255), "Red"),
     '2': ((0, 165, 255), "Orange"),
@@ -52,22 +54,34 @@ class Pen:
                 finger = [index.x, index.y]
                 self.dist = dist(index, thumb)
                 
-                self.coordinate_list.append([finger[0], finger[1]])
+                self.coordinate_list.append([finger[0], finger[1], self.colors])
     
     def draw(self, img):
         if len(self.coordinate_list) != 0:
-            color = self.colors
             thickness = 5
             for i in range(len(self.coordinate_list) - 1):
                 start = self.coordinate_list[i]
                 end = self.coordinate_list[i + 1]
-                if start == [100000, 100000] or end == [100000, 100000]:
+                color = self.coordinate_list[i + 1][2]
+                if start == [100000, 100000, color] or end == [100000, 100000, color]:
                     continue
                 start_point = (int(start[0] * img.shape[1]), int(start[1] * img.shape[0]))
                 end_point = (int(end[0] * img.shape[1]), int(end[1] * img.shape[0]))
                 cv2.line(img, start_point, end_point, color, thickness)
     def clear_canvas(self):
         self.coordinate_list = []
+    def undo(self):
+        if not self.coordinate_list:
+            print("Coordinate list is empty. Nothing to undo.")
+            return
+
+        # Remove the last point
+        self.coordinate_list.pop()
+
+        # Continue removing points until we find the marker
+        while self.coordinate_list and (self.coordinate_list[-1][0] != 100000 or self.coordinate_list[-1][1] != 100000):
+            self.coordinate_list.pop()
+
     def separate_plot(self):
-        self.coordinate_list.append([100000, 100000])
+        self.coordinate_list.append([100000, 100000, self.colors])
         
